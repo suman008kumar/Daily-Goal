@@ -1,0 +1,19 @@
+.ai-status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--border-color);
+}
+
+.ai-status-item.good {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: var(--success-500);
+}
+
+.ai-status-icon { font-size: 1.2rem; }
+.ai-status-label { flex: 1; font-size: 0.9rem; color: var(--text-secondary); }
+.ai-status-value { font-weight: 600; color: var(--text-primary); }
+.ai-status-confidence { font-size: 0.75rem; color: var(--text-secondary); }

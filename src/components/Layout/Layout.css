@@ -1,0 +1,149 @@
+.daily-goal-layout {
+  --layout-sidebar-width: 272px;
+  --layout-sidebar-collapsed-width: 82px;
+
+  min-height: 100dvh;
+  width: 100%;
+
+  background: var(--color-background, #f6f9fb);
+
+  color: var(--color-text-primary, #123142);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.daily-goal-layout__main {
+  min-height: 100dvh;
+
+  margin-left: var(--layout-sidebar-width);
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    margin-left 0.28s ease;
+}
+
+.daily-goal-layout--sidebar-collapsed
+  .daily-goal-layout__main {
+  margin-left:
+    var(--layout-sidebar-collapsed-width);
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.daily-goal-layout__content {
+  flex: 1;
+
+  min-width: 0;
+
+  width: 100%;
+
+  padding: 24px 28px 32px;
+
+  box-sizing: border-box;
+
+  background: var(--color-background, #f6f9fb);
+
+  transition:
+    background-color 0.3s ease;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.daily-goal-layout[data-theme="dark"] {
+  --color-background: #0b161d;
+
+  --color-surface: #101d25;
+
+  --color-surface-soft: #172831;
+
+  --color-surface-hover: #20353f;
+
+  --color-border: #23343d;
+
+  --color-border-soft: #293d47;
+
+  --color-text-primary: #edf6f8;
+
+  --color-text-secondary: #b6c9d0;
+
+  --color-text-muted: #8197a2;
+
+  background: #0b161d;
+
+  color: #edf6f8;
+}
+
+.daily-goal-layout[data-theme="dark"]
+  .daily-goal-layout__content {
+  background: #0b161d;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1199px) and (min-width: 768px) {
+  .daily-goal-layout__main {
+    margin-left: 82px;
+  }
+
+  .daily-goal-layout--sidebar-collapsed
+    .daily-goal-layout__main {
+    margin-left: 82px;
+  }
+
+  .daily-goal-layout__content {
+    padding: 22px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .daily-goal-layout__main,
+  .daily-goal-layout--sidebar-collapsed
+    .daily-goal-layout__main {
+    margin-left: 0;
+  }
+
+  .daily-goal-layout__content {
+    padding: 18px 16px 88px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 479px) {
+  .daily-goal-layout__content {
+    padding: 14px 12px 82px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .daily-goal-layout *,
+  .daily-goal-layout {
+    transition: none !important;
+
+    animation: none !important;
+  }
+}

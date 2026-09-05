@@ -1,0 +1,4 @@
+const dist=(a,b)=>Math.hypot((a?.x||0)-(b?.x||0),(a?.y||0)-(b?.y||0));
+const ear=(lm,a,b,c,d,e,f)=>{const A=dist(lm[a],lm[b]),B=dist(lm[c],lm[d]),C=dist(lm[e],lm[f]);return C? (A+B)/(2*C):0;};
+export const detectEyes=async(_video,faceResult=null)=>{const ts=Date.now();if(!faceResult||faceResult.detected!==true)return{type:"EYES",detected:false,eyesOpen:false,confidence:0,status:"not_detected",ear:0,timestamp:ts};const lm=faceResult.landmarks||[];if(lm.length<263)return{type:"EYES",detected:true,eyesOpen:true,confidence:faceResult.confidence||.8,status:"open",ear:.3,timestamp:ts};const left=ear(lm,160,144,158,153,33,133);const right=ear(lm,385,373,387,380,263,362);const avg=(left+right)/2;const open=avg>.18;return{type:"EYES",detected:true,eyesOpen:open,confidence:Math.min(1,Math.max(.5,(faceResult.confidence||.8))),status:open?"open":"closed",ear:avg,timestamp:ts};};
+export default detectEyes;

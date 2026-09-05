@@ -1,0 +1,399 @@
+/* =========================================================
+   DAILY GOAL — DESIGN TOKENS / VARIABLES
+   ========================================================= */
+
+:root {
+  /* =======================================================
+     BRAND COLORS
+     ======================================================= */
+
+  --color-primary: #0e4a63;
+  --color-primary-dark: #08384d;
+  --color-primary-light: #176b89;
+
+  --color-accent: #1ab0b7;
+  --color-accent-dark: #128f96;
+  --color-accent-light: #5dd9de;
+
+  /* =======================================================
+     SEMANTIC COLORS
+     ======================================================= */
+
+  --color-success: #20b26b;
+  --color-success-dark: #168852;
+  --color-success-light: #e9f9f1;
+
+  --color-warning: #f2a93b;
+  --color-warning-dark: #c98216;
+  --color-warning-light: #fff5e4;
+
+  --color-danger: #e65353;
+  --color-danger-dark: #c63838;
+  --color-danger-light: #ffeded;
+
+  --color-info: #4285e8;
+  --color-info-light: #edf4ff;
+
+  /* =======================================================
+     BACKGROUNDS
+     ======================================================= */
+
+  --bg-page: #f5f8fa;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fbfc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fbfeff;
+  --bg-input: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.88);
+  --bg-overlay: rgba(8, 56, 77, 0.45);
+
+  /* =======================================================
+     TEXT
+     ======================================================= */
+
+  --text-primary: #16313f;
+  --text-secondary: #607582;
+  --text-tertiary: #81939d;
+  --text-muted: #9aaab2;
+  --text-disabled: #b7c1c6;
+  --text-on-primary: #ffffff;
+  --text-on-accent: #ffffff;
+
+  /* =======================================================
+     BORDERS
+     ======================================================= */
+
+  --border-color: #e4ecef;
+  --border-light: #edf2f4;
+  --border-dark: #d3dfe4;
+  --border-hover: #c4dce2;
+  --border-focus: var(--color-primary);
+
+  /* =======================================================
+     BRAND SOFT BACKGROUNDS
+     ======================================================= */
+
+  --color-primary-soft: rgba(14, 74, 99, 0.09);
+  --color-primary-glow: rgba(14, 74, 99, 0.12);
+
+  --color-accent-soft: rgba(26, 176, 183, 0.10);
+  --color-accent-glow: rgba(26, 176, 183, 0.13);
+
+  --color-success-soft: rgba(32, 178, 107, 0.10);
+  --color-warning-soft: rgba(242, 169, 59, 0.11);
+  --color-danger-soft: rgba(230, 83, 83, 0.10);
+  --color-info-soft: rgba(66, 133, 232, 0.10);
+
+  /* =======================================================
+     TYPOGRAPHY
+     ======================================================= */
+
+  --font-body:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-heading:
+    "Plus Jakarta Sans",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* =======================================================
+     SPACING SYSTEM
+     ======================================================= */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+
+  /* =======================================================
+     RADIUS
+     ======================================================= */
+
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 30px;
+  --radius-full: 999px;
+
+  /* =======================================================
+     SHADOWS
+     ======================================================= */
+
+  --shadow-xs:
+    0 1px 3px rgba(20, 48, 61, 0.05);
+
+  --shadow-sm:
+    0 2px 8px rgba(20, 48, 61, 0.06);
+
+  --shadow-md:
+    0 6px 18px rgba(20, 48, 61, 0.08);
+
+  --shadow-lg:
+    0 12px 32px rgba(20, 48, 61, 0.10);
+
+  --shadow-xl:
+    0 20px 50px rgba(20, 48, 61, 0.13);
+
+  --shadow-card:
+    0 4px 18px rgba(20, 48, 61, 0.055);
+
+  --shadow-card-hover:
+    0 12px 30px rgba(20, 48, 61, 0.10);
+
+  --shadow-primary:
+    0 8px 24px rgba(14, 74, 99, 0.18);
+
+  --shadow-accent:
+    0 8px 24px rgba(26, 176, 183, 0.18);
+
+  /* =======================================================
+     TRANSITIONS
+     ======================================================= */
+
+  --transition-fast: 160ms ease;
+  --transition-normal: 260ms ease;
+  --transition-slow: 420ms ease;
+
+  --transition-spring:
+    420ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* =======================================================
+     Z-INDEX SYSTEM
+     ======================================================= */
+
+  --z-base: 1;
+  --z-card: 10;
+  --z-header: 100;
+  --z-sidebar: 200;
+  --z-dropdown: 300;
+  --z-sticky: 400;
+  --z-overlay: 500;
+  --z-modal: 600;
+  --z-toast: 700;
+  --z-tooltip: 800;
+  --z-splash: 1000;
+
+  /* =======================================================
+     LAYOUT
+     ======================================================= */
+
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 82px;
+
+  --header-height: 76px;
+
+  --mobile-header-height: 64px;
+  --mobile-navbar-height: 70px;
+
+  --content-max-width: 1600px;
+
+  /* =======================================================
+     FORM / CONTROL SIZES
+     ======================================================= */
+
+  --input-height: 46px;
+  --button-height: 44px;
+  --button-height-lg: 50px;
+
+  /* =======================================================
+     FOCUS
+     ======================================================= */
+
+  --focus-ring:
+    rgba(26, 176, 183, 0.55);
+
+  /* =======================================================
+     STATUS / MONITORING
+     ======================================================= */
+
+  --monitoring-live: #20b26b;
+  --monitoring-offline: #9aaab2;
+
+  --ai-live: #1ab0b7;
+  --ai-demo: #8b5cf6;
+
+  /* =======================================================
+     CHART
+     ======================================================= */
+
+  --chart-primary: #1ab0b7;
+  --chart-secondary: #0e4a63;
+  --chart-success: #20b26b;
+  --chart-warning: #f2a93b;
+  --chart-danger: #e65353;
+  --chart-grid: #e8eff2;
+
+  /* =======================================================
+     SKELETON
+     ======================================================= */
+
+  --skeleton-base: #edf2f4;
+  --skeleton-highlight: rgba(255, 255, 255, 0.75);
+
+  /* =======================================================
+     SCROLLBAR
+     ======================================================= */
+
+  --scrollbar-track: #f1f5f6;
+  --scrollbar-thumb: #c5d3d8;
+  --scrollbar-thumb-hover: #9fb3bb;
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] {
+  --bg-page: #0b1820;
+  --bg-primary: #101f28;
+  --bg-secondary: #132630;
+  --bg-card: #12232d;
+  --bg-card-hover: #162b36;
+  --bg-input: #10212a;
+  --bg-sidebar: #0f2029;
+  --bg-header: rgba(15, 32, 41, 0.88);
+  --bg-overlay: rgba(0, 0, 0, 0.65);
+
+  --text-primary: #eef7f9;
+  --text-secondary: #b4c6cc;
+  --text-tertiary: #8fa5ad;
+  --text-muted: #728991;
+  --text-disabled: #536970;
+  --text-on-primary: #ffffff;
+  --text-on-accent: #ffffff;
+
+  --border-color: #263c46;
+  --border-light: #1d333d;
+  --border-dark: #344c56;
+  --border-hover: #3c6572;
+
+  --color-primary-soft: rgba(26, 176, 183, 0.12);
+  --color-primary-glow: rgba(26, 176, 183, 0.15);
+
+  --color-accent-soft: rgba(26, 176, 183, 0.13);
+  --color-accent-glow: rgba(26, 176, 183, 0.16);
+
+  --color-success-soft: rgba(32, 178, 107, 0.13);
+  --color-warning-soft: rgba(242, 169, 59, 0.14);
+  --color-danger-soft: rgba(230, 83, 83, 0.13);
+  --color-info-soft: rgba(66, 133, 232, 0.13);
+
+  --shadow-xs:
+    0 1px 3px rgba(0, 0, 0, 0.16);
+
+  --shadow-sm:
+    0 3px 10px rgba(0, 0, 0, 0.20);
+
+  --shadow-md:
+    0 8px 22px rgba(0, 0, 0, 0.24);
+
+  --shadow-lg:
+    0 15px 35px rgba(0, 0, 0, 0.28);
+
+  --shadow-xl:
+    0 22px 55px rgba(0, 0, 0, 0.34);
+
+  --shadow-card:
+    0 5px 20px rgba(0, 0, 0, 0.16);
+
+  --shadow-card-hover:
+    0 12px 32px rgba(0, 0, 0, 0.25);
+
+  --chart-grid: #263c46;
+
+  --skeleton-base: #1a303a;
+  --skeleton-highlight: rgba(255, 255, 255, 0.06);
+
+  --scrollbar-track: #0f2028;
+  --scrollbar-thumb: #304954;
+  --scrollbar-thumb-hover: #46636e;
+}
+
+/* =========================================================
+   SYSTEM THEME
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    --bg-page: #0b1820;
+    --bg-primary: #101f28;
+    --bg-secondary: #132630;
+    --bg-card: #12232d;
+    --bg-card-hover: #162b36;
+    --bg-input: #10212a;
+    --bg-sidebar: #0f2029;
+    --bg-header: rgba(15, 32, 41, 0.88);
+
+    --text-primary: #eef7f9;
+    --text-secondary: #b4c6cc;
+    --text-tertiary: #8fa5ad;
+    --text-muted: #728991;
+    --text-disabled: #536970;
+
+    --border-color: #263c46;
+    --border-light: #1d333d;
+    --border-dark: #344c56;
+    --border-hover: #3c6572;
+
+    --color-primary-soft: rgba(26, 176, 183, 0.12);
+    --color-primary-glow: rgba(26, 176, 183, 0.15);
+
+    --color-accent-soft: rgba(26, 176, 183, 0.13);
+    --color-accent-glow: rgba(26, 176, 183, 0.16);
+
+    --shadow-card:
+      0 5px 20px rgba(0, 0, 0, 0.16);
+
+    --shadow-card-hover:
+      0 12px 32px rgba(0, 0, 0, 0.25);
+
+    --chart-grid: #263c46;
+
+    --skeleton-base: #1a303a;
+    --skeleton-highlight: rgba(255, 255, 255, 0.06);
+
+    --scrollbar-track: #0f2028;
+    --scrollbar-thumb: #304954;
+    --scrollbar-thumb-hover: #46636e;
+  }
+}

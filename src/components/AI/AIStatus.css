@@ -1,0 +1,57 @@
+.ai-status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.status-good {
+  background: var(--success-100);
+  border-color: var(--success-500);
+}
+
+.status-warning {
+  background: var(--warning-100);
+  border-color: var(--warning-500);
+}
+
+.status-danger {
+  background: var(--danger-100);
+  border-color: var(--danger-500);
+}
+
+.status-default {
+  opacity: 0.8;
+}
+
+.ai-status-icon {
+  font-size: 1.3rem;
+}
+
+.ai-status-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ai-status-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ai-status-value {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.ai-status-confidence {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}

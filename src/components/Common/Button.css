@@ -1,0 +1,688 @@
+/* =========================================================
+   DAILY GOAL — REUSABLE BUTTON
+========================================================= */
+
+.dg-button {
+  --button-bg: var(--primary, #0e4a63);
+  --button-text: #ffffff;
+  --button-border: transparent;
+  --button-hover-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 88%,
+    black
+  );
+  --button-shadow: rgba(14, 74, 99, 0.2);
+  --button-glow: rgba(26, 176, 183, 0.25);
+
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 17px;
+
+  overflow: hidden;
+
+  color: var(--button-text);
+  background: var(--button-bg);
+
+  border: 1px solid var(--button-border);
+  border-radius: 12px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  cursor: pointer;
+  user-select: none;
+
+  isolation: isolate;
+
+  box-shadow:
+    0 6px 18px var(--button-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  transform: translateZ(0);
+
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.dg-button__content {
+  position: relative;
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  pointer-events: none;
+}
+
+.dg-button__text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dg-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  line-height: 0;
+}
+
+.dg-button__icon svg {
+  display: block;
+}
+
+/* =========================================================
+   SHINE
+========================================================= */
+
+.dg-button__shine {
+  position: absolute;
+  z-index: 1;
+
+  top: 0;
+  bottom: 0;
+  left: -80%;
+
+  width: 45%;
+
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  pointer-events: none;
+}
+
+.dg-button--animated:hover .dg-button__shine {
+  animation: buttonShine 750ms ease forwards;
+}
+
+@keyframes buttonShine {
+  from {
+    left: -80%;
+  }
+
+  to {
+    left: 130%;
+  }
+}
+
+/* =========================================================
+   RIPPLE
+========================================================= */
+
+.dg-button__ripple {
+  position: absolute;
+  z-index: 2;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.22);
+
+  pointer-events: none;
+
+  transform: scale(0);
+  animation: buttonRipple 650ms ease-out forwards;
+}
+
+@keyframes buttonRipple {
+  0% {
+    opacity: 0.75;
+    transform: scale(0);
+  }
+
+  70% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.dg-button--loading {
+  cursor: wait;
+}
+
+.dg-button__loader {
+  animation: buttonLoaderSpin 850ms linear infinite;
+}
+
+@keyframes buttonLoaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   SIZES
+========================================================= */
+
+.dg-button--sm {
+  min-height: 36px;
+  padding: 0 13px;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+}
+
+.dg-button--md {
+  min-height: 44px;
+  padding: 0 17px;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+}
+
+.dg-button--lg {
+  min-height: 50px;
+  padding: 0 21px;
+
+  border-radius: 14px;
+
+  font-size: 13px;
+}
+
+.dg-button--xl {
+  min-height: 56px;
+  padding: 0 25px;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   WIDTH
+========================================================= */
+
+.dg-button--width-auto {
+  width: auto;
+}
+
+.dg-button--width-fit {
+  width: fit-content;
+}
+
+.dg-button--width-full,
+.dg-button--full {
+  width: 100%;
+}
+
+/* =========================================================
+   ROUNDING
+========================================================= */
+
+.dg-button--rounded-none {
+  border-radius: 0;
+}
+
+.dg-button--rounded-sm {
+  border-radius: 8px;
+}
+
+.dg-button--rounded-md {
+  border-radius: 12px;
+}
+
+.dg-button--rounded-lg {
+  border-radius: 16px;
+}
+
+.dg-button--rounded-xl {
+  border-radius: 20px;
+}
+
+.dg-button--rounded-pill {
+  border-radius: 999px;
+}
+
+/* =========================================================
+   PRIMARY
+========================================================= */
+
+.dg-button--primary {
+  --button-bg: var(--primary, #0e4a63);
+  --button-text: #ffffff;
+  --button-border: var(--primary, #0e4a63);
+  --button-shadow: rgba(14, 74, 99, 0.2);
+}
+
+.dg-button--primary:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 88%,
+    black
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 25px var(--button-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.dg-button--primary:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+
+  box-shadow:
+    0 4px 10px var(--button-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================================
+   SECONDARY
+========================================================= */
+
+.dg-button--secondary {
+  --button-bg: var(--surface, #ffffff);
+  --button-text: var(--primary, #0e4a63);
+  --button-border: var(--border, #dfe8ed);
+  --button-shadow: rgba(14, 74, 99, 0.06);
+}
+
+.dg-button--secondary:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 5%,
+    white
+  );
+
+  --button-border: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 22%,
+    var(--border, #dfe8ed)
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 9px 22px var(--button-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.dg-button--secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   OUTLINE
+========================================================= */
+
+.dg-button--outline {
+  --button-bg: transparent;
+  --button-text: var(--primary, #0e4a63);
+  --button-border: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 25%,
+    transparent
+  );
+  --button-shadow: transparent;
+}
+
+.dg-button--outline:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 7%,
+    transparent
+  );
+
+  --button-border: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 45%,
+    transparent
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 22px
+      color-mix(in srgb, var(--primary, #0e4a63) 10%, transparent);
+}
+
+/* =========================================================
+   GHOST
+========================================================= */
+
+.dg-button--ghost {
+  --button-bg: transparent;
+  --button-text: var(--primary, #0e4a63);
+  --button-border: transparent;
+  --button-shadow: transparent;
+}
+
+.dg-button--ghost:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 7%,
+    transparent
+  );
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   ACCENT
+========================================================= */
+
+.dg-button--accent {
+  --button-bg: var(--accent, #1ab0b7);
+  --button-text: #ffffff;
+  --button-border: var(--accent, #1ab0b7);
+  --button-shadow: rgba(26, 176, 183, 0.22);
+}
+
+.dg-button--accent:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--accent, #1ab0b7) 88%,
+    black
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 26px var(--button-shadow),
+    0 0 0 3px rgba(26, 176, 183, 0.08);
+}
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.dg-button--success {
+  --button-bg: var(--success, #36a66f);
+  --button-text: #ffffff;
+  --button-border: var(--success, #36a66f);
+  --button-shadow: rgba(54, 166, 111, 0.2);
+}
+
+.dg-button--success:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--success, #36a66f) 88%,
+    black
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 25px var(--button-shadow),
+    0 0 0 3px rgba(54, 166, 111, 0.07);
+}
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.dg-button--warning {
+  --button-bg: var(--warning, #e7a62a);
+  --button-text: #ffffff;
+  --button-border: var(--warning, #e7a62a);
+  --button-shadow: rgba(231, 166, 42, 0.2);
+}
+
+.dg-button--warning:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--warning, #e7a62a) 88%,
+    black
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 25px var(--button-shadow),
+    0 0 0 3px rgba(231, 166, 42, 0.07);
+}
+
+/* =========================================================
+   DANGER
+========================================================= */
+
+.dg-button--danger {
+  --button-bg: var(--danger, #ef5350);
+  --button-text: #ffffff;
+  --button-border: var(--danger, #ef5350);
+  --button-shadow: rgba(239, 83, 80, 0.2);
+}
+
+.dg-button--danger:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--danger, #ef5350) 88%,
+    black
+  );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 25px var(--button-shadow),
+    0 0 0 3px rgba(239, 83, 80, 0.07);
+}
+
+/* =========================================================
+   LINK
+========================================================= */
+
+.dg-button--link {
+  --button-bg: transparent;
+  --button-text: var(--accent, #1ab0b7);
+  --button-border: transparent;
+  --button-shadow: transparent;
+
+  min-height: auto;
+  padding: 5px 2px;
+
+  border-radius: 6px;
+
+  box-shadow: none;
+}
+
+.dg-button--link:hover:not(:disabled) {
+  --button-text: var(--primary, #0e4a63);
+
+  transform: translateX(2px);
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   ELEVATED
+========================================================= */
+
+.dg-button--elevated {
+  box-shadow:
+    0 12px 28px var(--button-shadow),
+    0 3px 8px rgba(14, 74, 99, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+.dg-button--glow {
+  box-shadow:
+    0 8px 24px var(--button-shadow),
+    0 0 0 0 var(--button-glow);
+}
+
+.dg-button--glow:hover:not(:disabled) {
+  box-shadow:
+    0 12px 30px var(--button-shadow),
+    0 0 0 5px var(--button-glow);
+}
+
+/* =========================================================
+   DISABLED
+========================================================= */
+
+.dg-button:disabled,
+.dg-button--disabled {
+  opacity: 0.48;
+
+  cursor: not-allowed;
+
+  transform: none !important;
+
+  box-shadow: none !important;
+}
+
+.dg-button:disabled .dg-button__shine,
+.dg-button--disabled .dg-button__shine {
+  display: none;
+}
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.dg-button:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 3px var(--surface, #ffffff),
+    0 0 0 6px
+      color-mix(
+        in srgb,
+        var(--accent, #1ab0b7) 55%,
+        transparent
+      ),
+    0 8px 22px var(--button-shadow);
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+[data-theme="dark"] .dg-button--secondary,
+.dark .dg-button--secondary {
+  --button-bg: var(--surface, #101d25);
+  --button-text: var(--text-primary, #edf7fa);
+  --button-border: var(--border, #293d46);
+}
+
+[data-theme="dark"] .dg-button--secondary:hover:not(:disabled),
+.dark .dg-button--secondary:hover:not(:disabled) {
+  --button-bg: color-mix(
+    in srgb,
+    var(--primary, #0e4a63) 25%,
+    var(--surface, #101d25)
+  );
+
+  --button-border: color-mix(
+    in srgb,
+    var(--accent, #1ab0b7) 30%,
+    var(--border, #293d46)
+  );
+}
+
+[data-theme="dark"] .dg-button--ghost,
+.dark .dg-button--ghost {
+  --button-text: var(--text-primary, #edf7fa);
+}
+
+[data-theme="dark"] .dg-button--outline,
+.dark .dg-button--outline {
+  --button-text: var(--accent, #1ab0b7);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+  .dg-button--lg {
+    min-height: 48px;
+    padding: 0 18px;
+  }
+
+  .dg-button--xl {
+    min-height: 52px;
+    padding: 0 20px;
+  }
+
+  .dg-button--full {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .dg-button {
+    min-height: 44px;
+  }
+
+  .dg-button--lg {
+    min-height: 46px;
+    padding: 0 15px;
+
+    font-size: 12px;
+  }
+
+  .dg-button--xl {
+    min-height: 48px;
+    padding: 0 17px;
+
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-button,
+  .dg-button *,
+  .dg-button::before,
+  .dg-button::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .dg-button__shine,
+  .dg-button__ripple {
+    display: none;
+  }
+}
