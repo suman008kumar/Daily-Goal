@@ -1,0 +1,84 @@
+.focus-chart {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.focus-chart-header h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-md);
+}
+
+.focus-chart-body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 200px;
+}
+
+.chart-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.chart-bar {
+  width: 80%;
+  max-width: 30px;
+  background: linear-gradient(180deg, var(--primary-500), var(--accent-500));
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  position: relative;
+  transition: height 0.5s ease;
+}
+
+.chart-value {
+  position: absolute;
+  top: -20px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.chart-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+/* Final premium empty/live states */
+.focus-chart { min-width: 0; overflow: hidden; }
+.focus-chart__empty--premium { min-height: 360px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 24px; }
+.focus-chart__empty-visual { width:104px; height:104px; position:relative; display:grid; place-items:center; margin-bottom:18px; }
+.focus-chart__empty-visual>div { width:54px; height:54px; border-radius:18px; display:grid; place-items:center; color:var(--color-accent); background:var(--color-surface,#fff); border:1px solid rgba(26,176,183,.18); box-shadow:0 12px 35px rgba(14,74,99,.10); z-index:2; }
+.focus-chart__empty-ring { position:absolute; inset:2px; border:1px solid rgba(26,176,183,.22); border-radius:50%; animation:dgFocusEmptyPulse 2.4s ease-out infinite; }
+.focus-chart__empty-ring--two { inset:15px; animation-delay:.8s; }
+@keyframes dgFocusEmptyPulse { 0%,100%{transform:scale(.86);opacity:.35} 50%{transform:scale(1);opacity:1} }
+.focus-chart__empty-kicker { font-size:10px; font-weight:850; letter-spacing:.16em; color:var(--color-accent); }
+.focus-chart__empty--premium h3 { margin:8px 0 7px; font-size:24px; letter-spacing:-.035em; color:var(--color-text-primary,#123142); }
+.focus-chart__empty--premium p { max-width:520px; margin:0; line-height:1.65; color:var(--color-text-secondary,#718393); }
+.focus-chart__empty-steps { width:min(620px,100%); margin-top:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.focus-chart__empty-steps span { display:flex; flex-direction:column; gap:4px; align-items:center; padding:13px 10px; border:1px solid var(--color-border,#e7edf2); border-radius:14px; background:var(--color-surface-soft,#f8fbfc); color:var(--color-text-secondary,#718393); font-size:10px; }
+.focus-chart__empty-steps b { color:var(--color-primary,#0e4a63); font-size:11px; }
+.focus-chart__empty-steps strong { color:var(--color-text-primary,#123142); }
+.focus-chart__body { position:relative; }
+.focus-chart__summary { position:absolute; right:8px; top:0; z-index:2; display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+.focus-chart__summary span { font-size:9px; text-transform:uppercase; letter-spacing:.08em; color:var(--color-text-muted,#8197a2); font-weight:800; }
+.focus-chart__summary strong { font-size:26px; color:var(--color-primary,#0e4a63); letter-spacing:-.04em; }
+.focus-chart__summary small { font-size:11px; color:var(--color-text-muted,#8197a2); }
+.focus-chart__canvas { position:relative; margin-top:18px; width:100%; }
+.focus-chart__canvas svg { width:100%; height:auto; min-height:260px; overflow:visible; }
+.focus-chart__grid-line { stroke:var(--color-border,#e7edf2); stroke-width:1; opacity:.7; }
+.focus-chart__axis { fill:var(--color-text-muted,#8197a2); font-size:11px; }
+.focus-chart__area { stroke:none; }
+.focus-chart__line { stroke-width:4; stroke-linecap:round; stroke-linejoin:round; }
+.focus-chart__point { fill:var(--color-surface,#fff); stroke:var(--color-accent); stroke-width:3; }
+.focus-chart__hit { fill:transparent; cursor:pointer; }
+.focus-chart__tooltip { position:absolute; transform:translate(-50%,-120%); min-width:82px; padding:8px 10px; border:1px solid rgba(26,176,183,.18); border-radius:10px; background:var(--color-surface,#fff); box-shadow:0 10px 25px rgba(14,74,99,.14); pointer-events:none; display:flex; flex-direction:column; gap:2px; }
+.focus-chart__tooltip strong { font-size:10px; color:var(--color-text-primary,#123142); }
+.focus-chart__tooltip span { font-size:9px; color:var(--color-accent); font-weight:800; }
+.focus-chart__labels { display:flex; justify-content:space-between; gap:10px; padding:0 46px 0 46px; margin-top:-8px; color:var(--color-text-muted,#8197a2); font-size:9px; }
+@media(max-width:700px){.focus-chart__empty--premium{min-height:320px;padding:28px 14px}.focus-chart__empty-steps{grid-template-columns:1fr}.focus-chart__summary{position:static;align-items:flex-start;margin-bottom:4px}.focus-chart__labels{padding:0 28px;font-size:8px;overflow:hidden}.focus-chart__labels span:nth-child(even){display:none}}

@@ -1,0 +1,1045 @@
+.camera-permission {
+  --permission-primary: var(--primary, #0e4a63);
+  --permission-accent: var(--cyan, #1ab0b7);
+  --permission-success: var(--success, #22a06b);
+  --permission-warning: var(--warning, #e5a11d);
+  --permission-danger: var(--danger, #dc4f5f);
+
+  --permission-bg: var(--surface, #ffffff);
+  --permission-surface: var(--surface-soft, #f7fafc);
+  --permission-border: var(--border, #e4ebf0);
+  --permission-text: var(--text-primary, #16313d);
+  --permission-muted: var(--text-secondary, #6d7f88);
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--permission-border);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      color-mix(in srgb, var(--permission-accent) 11%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 94% 90%,
+      color-mix(in srgb, var(--permission-primary) 10%, transparent),
+      transparent 30%
+    ),
+    var(--permission-bg);
+  box-shadow:
+    0 22px 60px rgba(14, 74, 99, 0.09),
+    0 5px 20px rgba(14, 74, 99, 0.05);
+  animation: permission-card-enter 0.7s cubic-bezier(0.2, 0.75, 0.2, 1)
+    both;
+}
+
+.camera-permission::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.52) 46%,
+      transparent 52%
+    );
+  transform: translateX(-110%);
+  animation: permission-sheen 5.5s ease-in-out infinite;
+}
+
+.camera-permission__ambient {
+  position: absolute;
+  z-index: -1;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(5px);
+  opacity: 0.55;
+}
+
+.camera-permission__ambient--one {
+  top: -130px;
+  right: 8%;
+  background: color-mix(
+    in srgb,
+    var(--permission-accent) 13%,
+    transparent
+  );
+  animation: ambient-float-one 7s ease-in-out infinite;
+}
+
+.camera-permission__ambient--two {
+  bottom: -150px;
+  left: 10%;
+  background: color-mix(
+    in srgb,
+    var(--permission-primary) 11%,
+    transparent
+  );
+  animation: ambient-float-two 8s ease-in-out infinite;
+}
+
+.camera-permission__inner {
+  display: grid;
+  grid-template-columns: minmax(270px, 0.78fr) minmax(0, 1.45fr);
+  align-items: center;
+  gap: 34px;
+  min-height: 440px;
+  padding: 42px;
+}
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+.camera-permission__visual-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.camera-permission__visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 310px);
+  aspect-ratio: 1;
+}
+
+.camera-permission__visual::before {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--permission-accent) 15%, transparent),
+    transparent 67%
+  );
+  filter: blur(18px);
+  animation: visual-glow 3.5s ease-in-out infinite;
+}
+
+.camera-permission__orbit {
+  position: absolute;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-accent) 25%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.camera-permission__orbit--one {
+  inset: 10%;
+  animation: orbit-spin 13s linear infinite;
+}
+
+.camera-permission__orbit--two {
+  inset: 18%;
+  border-style: dashed;
+  opacity: 0.7;
+  animation: orbit-spin-reverse 10s linear infinite;
+}
+
+.camera-permission__orbit--three {
+  inset: 3%;
+  opacity: 0.35;
+  animation: orbit-spin 18s linear infinite;
+}
+
+.camera-permission__radar {
+  position: absolute;
+  inset: 25%;
+  border-radius: 50%;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-accent) 25%, transparent);
+  overflow: hidden;
+  opacity: 0.55;
+}
+
+.camera-permission__radar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in srgb, var(--permission-accent) 28%, transparent) 35deg,
+    transparent 75deg
+  );
+  animation: radar-spin 3.2s linear infinite;
+}
+
+.camera-permission__radar span {
+  position: absolute;
+  inset: 25%;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-accent) 15%, transparent);
+  border-radius: 50%;
+}
+
+.camera-permission__radar span:nth-child(2) {
+  inset: 42%;
+}
+
+.camera-permission__radar span:nth-child(3) {
+  inset: 12%;
+}
+
+.camera-permission__camera {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 126px;
+  height: 94px;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-primary) 30%, transparent);
+  border-radius: 26px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--permission-primary) 95%, black),
+    color-mix(in srgb, var(--permission-primary) 75%, var(--permission-accent))
+  );
+  box-shadow:
+    0 20px 40px rgba(14, 74, 99, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: camera-float 4s ease-in-out infinite;
+}
+
+.camera-permission__camera::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: -15px;
+  width: 22px;
+  height: 38px;
+  border-radius: 0 9px 9px 0;
+  background: color-mix(in srgb, var(--permission-primary) 85%, black);
+}
+
+.camera-permission__camera-lens {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  color: white;
+  background:
+    radial-gradient(
+      circle at 34% 30%,
+      rgba(255, 255, 255, 0.35),
+      transparent 15%
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in srgb, var(--permission-accent) 72%, #061e28),
+      #071d28 72%
+    );
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.06),
+    0 0 25px color-mix(in srgb, var(--permission-accent) 35%, transparent);
+}
+
+.camera-permission__camera-light {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8ff8ce;
+  box-shadow: 0 0 13px #8ff8ce;
+  animation: camera-light-pulse 1.8s ease-in-out infinite;
+}
+
+.camera-permission__scan-line {
+  position: absolute;
+  z-index: 4;
+  left: 29%;
+  right: 29%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--permission-accent),
+    transparent
+  );
+  opacity: 0.8;
+  animation: scan-line 2.8s ease-in-out infinite;
+}
+
+.camera-permission__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  padding: 9px 14px;
+  border: 1px solid var(--permission-border);
+  border-radius: 999px;
+  color: var(--permission-muted);
+  background: color-mix(
+    in srgb,
+    var(--permission-surface) 85%,
+    transparent
+  );
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 22px rgba(14, 74, 99, 0.06);
+}
+
+.camera-permission__status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--permission-accent);
+  box-shadow: 0 0 0 5px
+    color-mix(in srgb, var(--permission-accent) 12%, transparent);
+  animation: status-dot-pulse 1.7s ease-in-out infinite;
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.camera-permission__content {
+  position: relative;
+  min-width: 0;
+}
+
+.camera-permission__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+  color: var(--permission-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.camera-permission__eyebrow-icon {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-accent) 25%, transparent);
+  border-radius: 9px;
+  background: color-mix(
+    in srgb,
+    var(--permission-accent) 9%,
+    transparent
+  );
+}
+
+.camera-permission h2 {
+  max-width: 680px;
+  margin: 0;
+  color: var(--permission-text);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.camera-permission__description {
+  max-width: 650px;
+  margin: 15px 0 0;
+  color: var(--permission-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.camera-permission__features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 27px;
+}
+
+.camera-permission__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--permission-border);
+  border-radius: 15px;
+  background: color-mix(
+    in srgb,
+    var(--permission-surface) 74%,
+    transparent
+  );
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background 0.28s ease;
+}
+
+.camera-permission__feature:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(
+    in srgb,
+    var(--permission-accent) 30%,
+    var(--permission-border)
+  );
+  background: var(--permission-bg);
+  box-shadow: 0 12px 28px rgba(14, 74, 99, 0.07);
+}
+
+.camera-permission__feature-icon {
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 auto;
+  border-radius: 9px;
+  color: var(--permission-accent);
+  background: color-mix(
+    in srgb,
+    var(--permission-accent) 10%,
+    transparent
+  );
+}
+
+.camera-permission__feature-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.camera-permission__feature-content strong {
+  overflow: hidden;
+  color: var(--permission-text);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.camera-permission__feature-content span {
+  color: var(--permission-muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.camera-permission__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 25px;
+}
+
+.camera-permission__primary,
+.camera-permission__secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 46px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.camera-permission__primary {
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--permission-primary),
+    color-mix(
+      in srgb,
+      var(--permission-primary) 68%,
+      var(--permission-accent)
+    )
+  );
+  box-shadow:
+    0 11px 25px
+      color-mix(in srgb, var(--permission-primary) 22%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.camera-permission__primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.22) 48%,
+    transparent 70%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.65s ease;
+}
+
+.camera-permission__primary:hover::before {
+  transform: translateX(130%);
+}
+
+.camera-permission__primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 15px 32px
+      color-mix(in srgb, var(--permission-primary) 27%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.camera-permission__primary:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.camera-permission__primary:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.camera-permission__button-icon,
+.camera-permission__button-arrow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+.camera-permission__button-arrow {
+  margin-left: 3px;
+  font-size: 17px;
+  transition: transform 0.25s ease;
+}
+
+.camera-permission__primary:hover:not(:disabled)
+  .camera-permission__button-arrow {
+  transform: translateX(3px);
+}
+
+.camera-permission__secondary {
+  border: 1px solid var(--permission-border);
+  color: var(--permission-text);
+  background: var(--permission-bg);
+}
+
+.camera-permission__secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: color-mix(
+    in srgb,
+    var(--permission-accent) 30%,
+    var(--permission-border)
+  );
+  box-shadow: 0 10px 24px rgba(14, 74, 99, 0.07);
+}
+
+.camera-permission__secondary:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.camera-permission__privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 620px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border: 1px solid
+    color-mix(in srgb, var(--permission-success) 15%, var(--permission-border));
+  border-radius: 14px;
+  background: color-mix(
+    in srgb,
+    var(--permission-success) 5%,
+    var(--permission-bg)
+  );
+}
+
+.camera-permission__privacy-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  color: var(--permission-success);
+  background: color-mix(
+    in srgb,
+    var(--permission-success) 10%,
+    transparent
+  );
+}
+
+.camera-permission__privacy div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.camera-permission__privacy strong {
+  color: var(--permission-text);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.camera-permission__privacy span {
+  color: var(--permission-muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.camera-permission__bottom-line {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--permission-accent),
+    var(--permission-primary),
+    transparent
+  );
+  opacity: 0.75;
+}
+
+/* =========================================================
+   STATE TONES
+   ========================================================= */
+
+.camera-permission--success {
+  --permission-state: var(--permission-success);
+}
+
+.camera-permission--warning {
+  --permission-state: var(--permission-warning);
+}
+
+.camera-permission--danger {
+  --permission-state: var(--permission-danger);
+}
+
+.camera-permission--success .camera-permission__visual::before {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--permission-success) 16%, transparent),
+    transparent 68%
+  );
+}
+
+.camera-permission--danger .camera-permission__visual::before {
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--permission-danger) 13%, transparent),
+    transparent 68%
+  );
+}
+
+.camera-permission--danger .camera-permission__status-dot {
+  background: var(--permission-danger);
+  box-shadow: 0 0 0 5px
+    color-mix(in srgb, var(--permission-danger) 12%, transparent);
+}
+
+.camera-permission--success .camera-permission__status-dot {
+  background: var(--permission-success);
+  box-shadow: 0 0 0 5px
+    color-mix(in srgb, var(--permission-success) 12%, transparent);
+}
+
+/* =========================================================
+   COMPACT
+   ========================================================= */
+
+.camera-permission--compact .camera-permission__inner {
+  grid-template-columns: 190px minmax(0, 1fr);
+  min-height: 270px;
+  gap: 25px;
+  padding: 28px;
+}
+
+.camera-permission--compact .camera-permission__visual {
+  width: 185px;
+}
+
+.camera-permission--compact .camera-permission__camera {
+  width: 92px;
+  height: 70px;
+  border-radius: 19px;
+}
+
+.camera-permission--compact .camera-permission__camera-lens {
+  width: 40px;
+  height: 40px;
+}
+
+.camera-permission--compact h2 {
+  font-size: 25px;
+}
+
+.camera-permission--compact .camera-permission__description {
+  font-size: 13px;
+}
+
+.camera-permission--compact .camera-permission__privacy {
+  margin-top: 12px;
+}
+
+/* =========================================================
+   SPINNING
+   ========================================================= */
+
+.is-spinning {
+  animation: permission-spin 1s linear infinite;
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .camera-permission {
+  --permission-bg: var(--surface, #101c23);
+  --permission-surface: var(--surface-soft, #15252d);
+  --permission-border: var(--border, #263a44);
+  --permission-text: var(--text-primary, #edf7fa);
+  --permission-muted: var(--text-secondary, #91a8b1);
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.28),
+    0 5px 20px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="dark"] .camera-permission::before {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.035) 46%,
+    transparent 52%
+  );
+}
+
+[data-theme="dark"] .camera-permission__feature:hover {
+  background: var(--permission-surface);
+}
+
+[data-theme="dark"] .camera-permission__secondary {
+  background: var(--permission-surface);
+}
+
+[data-theme="dark"] .camera-permission__status {
+  background: var(--permission-surface);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .camera-permission__inner {
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 28px;
+    padding: 32px;
+  }
+
+  .camera-permission__visual {
+    width: 235px;
+  }
+
+  .camera-permission__features {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-permission__feature {
+    padding: 11px 12px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .camera-permission {
+    border-radius: 22px;
+  }
+
+  .camera-permission__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    min-height: auto;
+    padding: 27px 20px 24px;
+  }
+
+  .camera-permission__visual-column {
+    order: 1;
+  }
+
+  .camera-permission__content {
+    order: 2;
+  }
+
+  .camera-permission__visual {
+    width: min(72vw, 235px);
+  }
+
+  .camera-permission__status {
+    margin-top: 0;
+  }
+
+  .camera-permission h2 {
+    font-size: clamp(27px, 8vw, 35px);
+  }
+
+  .camera-permission__description {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .camera-permission__features {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .camera-permission__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .camera-permission__primary,
+  .camera-permission__secondary {
+    width: 100%;
+  }
+
+  .camera-permission--compact .camera-permission__inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 24px 19px;
+  }
+
+  .camera-permission--compact .camera-permission__visual {
+    width: 165px;
+  }
+
+  .camera-permission--compact h2 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 430px) {
+  .camera-permission__inner {
+    padding: 23px 16px 20px;
+  }
+
+  .camera-permission__visual {
+    width: 205px;
+  }
+
+  .camera-permission__camera {
+    width: 110px;
+    height: 82px;
+  }
+
+  .camera-permission__camera-lens {
+    width: 46px;
+    height: 46px;
+  }
+
+  .camera-permission__privacy {
+    padding: 10px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-permission,
+  .camera-permission *,
+  .camera-permission::before {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes permission-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.975);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes permission-sheen {
+  0%,
+  58% {
+    transform: translateX(-110%);
+  }
+
+  78%,
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+@keyframes ambient-float-one {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-20px, 18px, 0) scale(1.08);
+  }
+}
+
+@keyframes ambient-float-two {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(18px, -15px, 0) scale(1.06);
+  }
+}
+
+@keyframes visual-glow {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes radar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes camera-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
+@keyframes camera-light-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes scan-line {
+  0%,
+  100% {
+    top: 27%;
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    top: 73%;
+    opacity: 0;
+  }
+}
+
+@keyframes status-dot-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes permission-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

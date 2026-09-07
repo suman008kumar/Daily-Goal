@@ -1,0 +1,516 @@
+/* =========================================================
+   DAILY GOAL — PREMIUM TOOLTIP
+   ========================================================= */
+
+.dg-tooltip {
+  --tooltip-bg: #0e4a63;
+  --tooltip-text: #ffffff;
+  --tooltip-border: rgba(255, 255, 255, 0.12);
+  --tooltip-shadow:
+    0 18px 45px rgba(8, 38, 54, 0.22),
+    0 5px 18px rgba(8, 38, 54, 0.14);
+
+  --tooltip-accent: #1ab0b7;
+  --tooltip-radius: 12px;
+
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* =========================================================
+   DEFAULT TRIGGER
+   ========================================================= */
+
+.dg-tooltip__default-trigger {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* =========================================================
+   TOOLTIP CONTENT
+   ========================================================= */
+
+.dg-tooltip__content {
+  position: absolute;
+  z-index: 9999;
+
+  width: max-content;
+  max-width: var(--tooltip-max-width);
+
+  padding: 0;
+
+  color: var(--tooltip-text);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0)
+    ),
+    var(--tooltip-bg);
+
+  border: 1px solid var(--tooltip-border);
+  border-radius: var(--tooltip-radius);
+
+  box-shadow: var(--tooltip-shadow);
+
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform-origin: center;
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   POSITIONING
+   ========================================================= */
+
+.dg-tooltip--top .dg-tooltip__content {
+  left: 50%;
+  bottom: calc(100% + var(--tooltip-offset));
+  transform: translateX(-50%) translateY(7px) scale(0.96);
+}
+
+.dg-tooltip--bottom .dg-tooltip__content {
+  left: 50%;
+  top: calc(100% + var(--tooltip-offset));
+  transform: translateX(-50%) translateY(-7px) scale(0.96);
+}
+
+.dg-tooltip--left .dg-tooltip__content {
+  right: calc(100% + var(--tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%) translateX(7px) scale(0.96);
+}
+
+.dg-tooltip--right .dg-tooltip__content {
+  left: calc(100% + var(--tooltip-offset));
+  top: 50%;
+  transform: translateY(-50%) translateX(-7px) scale(0.96);
+}
+
+/* =========================================================
+   OPEN STATE
+   ========================================================= */
+
+.dg-tooltip.is-open .dg-tooltip__content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dg-tooltip--top.is-open .dg-tooltip__content {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.dg-tooltip--bottom.is-open .dg-tooltip__content {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.dg-tooltip--left.is-open .dg-tooltip__content {
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+.dg-tooltip--right.is-open .dg-tooltip__content {
+  transform: translateY(-50%) translateX(0) scale(1);
+}
+
+/* =========================================================
+   INNER CONTENT
+   ========================================================= */
+
+.dg-tooltip__inner {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+
+  padding: 10px 13px;
+}
+
+.dg-tooltip__text {
+  min-width: 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+
+  letter-spacing: 0.005em;
+
+  overflow-wrap: anywhere;
+}
+
+.dg-tooltip__icon {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  color: var(--tooltip-accent);
+
+  margin-top: 1px;
+
+  filter:
+    drop-shadow(0 0 7px rgba(26, 176, 183, 0.45));
+}
+
+/* =========================================================
+   AMBIENT EFFECT
+   ========================================================= */
+
+.dg-tooltip__ambient {
+  position: absolute;
+  inset: -1px;
+
+  overflow: hidden;
+  border-radius: inherit;
+
+  pointer-events: none;
+}
+
+.dg-tooltip__ambient::before {
+  content: "";
+
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  top: -45px;
+  right: -35px;
+
+  border-radius: 50%;
+
+  background: rgba(26, 176, 183, 0.22);
+
+  filter: blur(24px);
+
+  animation: dgTooltipAmbient 4s ease-in-out infinite;
+}
+
+.dg-tooltip__ambient::after {
+  content: "";
+
+  position: absolute;
+
+  width: 60px;
+  height: 60px;
+
+  left: -35px;
+  bottom: -40px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  filter: blur(20px);
+}
+
+/* =========================================================
+   SHINE
+   ========================================================= */
+
+.dg-tooltip__shine {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  pointer-events: none;
+}
+
+.dg-tooltip__shine::after {
+  content: "";
+
+  position: absolute;
+
+  top: -50%;
+  left: -75%;
+
+  width: 45%;
+  height: 200%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.11),
+      transparent
+    );
+
+  transform: rotate(18deg) translateX(-120%);
+
+  animation: dgTooltipShine 5s ease-in-out infinite;
+}
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.dg-tooltip__arrow {
+  position: absolute;
+
+  width: 9px;
+  height: 9px;
+
+  background: var(--tooltip-bg);
+
+  border-right: 1px solid var(--tooltip-border);
+  border-bottom: 1px solid var(--tooltip-border);
+
+  z-index: 1;
+}
+
+/* TOP */
+.dg-tooltip--top .dg-tooltip__arrow {
+  left: 50%;
+  bottom: -5px;
+
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* BOTTOM */
+.dg-tooltip--bottom .dg-tooltip__arrow {
+  left: 50%;
+  top: -5px;
+
+  transform: translateX(-50%) rotate(225deg);
+}
+
+/* LEFT */
+.dg-tooltip--left .dg-tooltip__arrow {
+  right: -5px;
+  top: 50%;
+
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* RIGHT */
+.dg-tooltip--right .dg-tooltip__arrow {
+  left: -5px;
+  top: 50%;
+
+  transform: translateY(-50%) rotate(135deg);
+}
+
+/* =========================================================
+   ALIGNMENT
+   ========================================================= */
+
+.dg-tooltip--align-start.dg-tooltip--top .dg-tooltip__content,
+.dg-tooltip--align-start.dg-tooltip--bottom .dg-tooltip__content {
+  left: 0;
+  transform-origin: left center;
+}
+
+.dg-tooltip--align-end.dg-tooltip--top .dg-tooltip__content,
+.dg-tooltip--align-end.dg-tooltip--bottom .dg-tooltip__content {
+  left: auto;
+  right: 0;
+  transform-origin: right center;
+}
+
+.dg-tooltip--align-start.dg-tooltip--top .dg-tooltip__content {
+  transform: translateY(7px) scale(0.96);
+}
+
+.dg-tooltip--align-start.dg-tooltip--bottom .dg-tooltip__content {
+  transform: translateY(-7px) scale(0.96);
+}
+
+.dg-tooltip--align-end.dg-tooltip--top .dg-tooltip__content {
+  transform: translateY(7px) scale(0.96);
+}
+
+.dg-tooltip--align-end.dg-tooltip--bottom .dg-tooltip__content {
+  transform: translateY(-7px) scale(0.96);
+}
+
+.dg-tooltip--align-start.dg-tooltip--top.is-open .dg-tooltip__content,
+.dg-tooltip--align-end.dg-tooltip--top.is-open .dg-tooltip__content {
+  transform: translateY(0) scale(1);
+}
+
+.dg-tooltip--align-start.dg-tooltip--bottom.is-open .dg-tooltip__content,
+.dg-tooltip--align-end.dg-tooltip--bottom.is-open .dg-tooltip__content {
+  transform: translateY(0) scale(1);
+}
+
+/* =========================================================
+   HOVER / FOCUS
+   ========================================================= */
+
+.dg-tooltip > [aria-describedby] {
+  outline: none;
+}
+
+.dg-tooltip > [aria-describedby]:focus-visible {
+  outline: 2px solid var(--tooltip-accent);
+  outline-offset: 3px;
+  border-radius: 7px;
+}
+
+/* =========================================================
+   INTERACTIVE TOOLTIP
+   ========================================================= */
+
+.dg-tooltip.is-interactive .dg-tooltip__content {
+  cursor: default;
+}
+
+/* =========================================================
+   ANIMATION VARIANTS
+   ========================================================= */
+
+.dg-tooltip__content--smooth {
+  transition:
+    opacity 180ms ease,
+    visibility 180ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dg-tooltip__content--snappy {
+  transition:
+    opacity 120ms ease,
+    visibility 120ms ease,
+    transform 140ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dg-tooltip__content--soft {
+  transition:
+    opacity 260ms ease,
+    visibility 260ms ease,
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================
+   KEYFRAMES
+   ========================================================= */
+
+@keyframes dgTooltipAmbient {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translate3d(-8px, 6px, 0) scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes dgTooltipShine {
+  0%,
+  65%,
+  100% {
+    transform: rotate(18deg) translateX(-120%);
+  }
+
+  78% {
+    transform: rotate(18deg) translateX(420%);
+  }
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] .dg-tooltip,
+.dark .dg-tooltip {
+  --tooltip-bg: #102f3d;
+  --tooltip-border: rgba(255, 255, 255, 0.13);
+
+  --tooltip-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.45),
+    0 7px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .dg-tooltip__content {
+    max-width: min(
+      var(--tooltip-max-width),
+      calc(100vw - 32px)
+    );
+  }
+
+  .dg-tooltip__inner {
+    padding: 9px 11px;
+  }
+
+  .dg-tooltip__text {
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dg-tooltip__content {
+    max-width: min(
+      var(--tooltip-max-width),
+      calc(100vw - 24px)
+    );
+  }
+
+  .dg-tooltip__inner {
+    gap: 7px;
+    padding: 8px 10px;
+  }
+
+  .dg-tooltip__text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .dg-tooltip__icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-tooltip__content {
+    transition:
+      opacity 100ms ease,
+      visibility 100ms ease;
+  }
+
+  .dg-tooltip__ambient::before,
+  .dg-tooltip__shine::after {
+    animation: none;
+  }
+
+  .dg-tooltip--top .dg-tooltip__content,
+  .dg-tooltip--bottom .dg-tooltip__content,
+  .dg-tooltip--left .dg-tooltip__content,
+  .dg-tooltip--right .dg-tooltip__content {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .dg-tooltip--left .dg-tooltip__content,
+  .dg-tooltip--right .dg-tooltip__content {
+    transform: translateY(-50%) translateX(0) scale(1);
+  }
+}

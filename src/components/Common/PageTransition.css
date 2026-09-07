@@ -1,0 +1,763 @@
+/* =========================================================
+   DAILY GOAL — PREMIUM PAGE TRANSITION
+   ========================================================= */
+
+.dg-page-transition {
+  --page-transition-duration: 650ms;
+  --page-transition-delay: 0ms;
+  --page-stagger-delay: 55ms;
+
+  --transition-primary: #0e4a63;
+  --transition-accent: #1ab0b7;
+
+  position: relative;
+
+  width: 100%;
+  min-height: 100%;
+
+  isolation: isolate;
+
+  opacity: 1;
+}
+
+/* =========================================================
+   VIEWPORT
+   ========================================================= */
+
+.dg-page-transition__viewport {
+  position: relative;
+
+  width: 100%;
+  min-height: 100%;
+
+  overflow: visible;
+}
+
+.dg-page-transition__content {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+}
+
+/* =========================================================
+   AMBIENT BACKGROUND
+   ========================================================= */
+
+.dg-page-transition__ambient {
+  position: absolute;
+  z-index: 0;
+
+  inset: -20%;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(26, 176, 183, 0.08),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(14, 74, 99, 0.07),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 55% 90%,
+      rgba(26, 176, 183, 0.055),
+      transparent 28%
+    );
+
+  filter: blur(2px);
+
+  transition:
+    opacity 700ms ease,
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dg-page-transition--entering
+  .dg-page-transition__ambient {
+  opacity: 1;
+
+  transform: scale(1.04);
+}
+
+.dg-page-transition--entered
+  .dg-page-transition__ambient {
+  opacity: 0.45;
+
+  transform: scale(1);
+}
+
+/* =========================================================
+   SCANLINE
+   ========================================================= */
+
+.dg-page-transition__scanline {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 0;
+  left: -15%;
+
+  width: 130%;
+  height: 1px;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(26, 176, 183, 0.35),
+      rgba(255, 255, 255, 0.65),
+      rgba(26, 176, 183, 0.35),
+      transparent
+    );
+
+  box-shadow:
+    0 0 16px rgba(26, 176, 183, 0.3);
+
+  transform: translateY(-20px);
+}
+
+.dg-page-transition--cinematic.dg-page-transition--entering
+  .dg-page-transition__scanline {
+  opacity: 1;
+
+  animation:
+    dgPageScan
+    var(--page-transition-duration)
+    cubic-bezier(0.4, 0, 0.2, 1)
+    both;
+}
+
+@keyframes dgPageScan {
+  0% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(900px);
+  }
+}
+
+/* =========================================================
+   BASE CONTENT TRANSITION
+   ========================================================= */
+
+.dg-page-transition__content {
+  transform-origin: center center;
+
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+/* =========================================================
+   CINEMATIC
+   ========================================================= */
+
+.dg-page-transition--cinematic.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageCinematicIn
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    var(--page-transition-delay)
+    both;
+}
+
+.dg-page-transition--cinematic.dg-page-transition--exiting
+  .dg-page-transition__content {
+  animation:
+    dgPageCinematicOut
+    var(--page-transition-duration)
+    cubic-bezier(0.7, 0, 0.84, 0)
+    both;
+}
+
+@keyframes dgPageCinematicIn {
+  0% {
+    opacity: 0;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, 34px, 0)
+      scale(0.94);
+
+    filter:
+      blur(10px)
+      saturate(0.75);
+  }
+
+  42% {
+    opacity: 0.7;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, 8px, 0)
+      scale(0.985);
+
+    filter:
+      blur(3px)
+      saturate(0.9);
+  }
+
+  72% {
+    opacity: 0.94;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, -2px, 0)
+      scale(1.005);
+
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, 0, 0)
+      scale(1);
+
+    filter:
+      blur(0)
+      saturate(1);
+  }
+}
+
+@keyframes dgPageCinematicOut {
+  0% {
+    opacity: 1;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, 0, 0)
+      scale(1);
+
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      perspective(1200px)
+      translate3d(0, -20px, 0)
+      scale(0.985);
+
+    filter: blur(8px);
+  }
+}
+
+/* =========================================================
+   FADE
+   ========================================================= */
+
+.dg-page-transition--fade.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageFadeIn
+    var(--page-transition-duration)
+    ease
+    var(--page-transition-delay)
+    both;
+}
+
+@keyframes dgPageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   SLIDE
+   ========================================================= */
+
+.dg-page-transition--slide.dg-page-transition--forward.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageSlideForward
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+.dg-page-transition--slide.dg-page-transition--backward.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageSlideBackward
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+.dg-page-transition--slide.dg-page-transition--up.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageSlideUp
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+.dg-page-transition--slide.dg-page-transition--down.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageSlideDown
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+@keyframes dgPageSlideForward {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(42px, 0, 0)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+}
+
+@keyframes dgPageSlideBackward {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(-42px, 0, 0)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+}
+
+@keyframes dgPageSlideUp {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(0, 42px, 0)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+}
+
+@keyframes dgPageSlideDown {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(0, -42px, 0)
+      scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   ZOOM
+   ========================================================= */
+
+.dg-page-transition--zoom.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageZoomIn
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+@keyframes dgPageZoomIn {
+  from {
+    opacity: 0;
+
+    transform:
+      perspective(1000px)
+      scale(0.82);
+
+    filter: blur(12px);
+  }
+
+  55% {
+    opacity: 0.82;
+
+    transform:
+      perspective(1000px)
+      scale(1.015);
+
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      perspective(1000px)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+/* =========================================================
+   BLUR
+   ========================================================= */
+
+.dg-page-transition--blur.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageBlurIn
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+@keyframes dgPageBlurIn {
+  from {
+    opacity: 0;
+
+    filter:
+      blur(22px)
+      brightness(1.08);
+
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+
+    filter:
+      blur(0)
+      brightness(1);
+
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   REVEAL
+   ========================================================= */
+
+.dg-page-transition--reveal
+  .dg-page-transition__content {
+  clip-path: inset(0 0 100% 0);
+}
+
+.dg-page-transition--reveal.dg-page-transition--entering
+  .dg-page-transition__content {
+  animation:
+    dgPageReveal
+    var(--page-transition-duration)
+    cubic-bezier(0.16, 1, 0.3, 1)
+    both;
+}
+
+@keyframes dgPageReveal {
+  from {
+    opacity: 0;
+
+    clip-path: inset(0 0 100% 0);
+
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+
+    clip-path: inset(0 0 0 0);
+
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   CHILD STAGGER
+   ========================================================= */
+
+.dg-page-transition--stagger.dg-page-transition--entering
+  .dg-page-transition__item {
+  animation:
+    dgPageItemIn
+    calc(
+      var(--page-transition-duration) * 0.72
+    )
+    cubic-bezier(0.16, 1, 0.3, 1)
+    var(--page-item-delay)
+    both;
+}
+
+@keyframes dgPageItemIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translate3d(0, 24px, 0)
+      scale(0.97);
+
+    filter: blur(5px);
+  }
+
+  55% {
+    opacity: 0.9;
+
+    transform:
+      translate3d(0, -2px, 0)
+      scale(1.005);
+
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0)
+      scale(1);
+
+    filter: blur(0);
+  }
+}
+
+/* =========================================================
+   ENTERED
+   ========================================================= */
+
+.dg-page-transition--entered
+  .dg-page-transition__content {
+  opacity: 1;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.dg-page-transition--loading
+  .dg-page-transition__content {
+  pointer-events: none;
+}
+
+.dg-page-transition__loading {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  display: grid;
+  place-items: center;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.08),
+      transparent 48%
+    );
+}
+
+.dg-page-transition__loading-ring {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid rgba(26, 176, 183, 0.16);
+
+  border-top-color: var(--transition-accent);
+
+  box-shadow:
+    0 0 22px rgba(26, 176, 183, 0.2);
+
+  animation:
+    dgPageLoader
+    800ms
+    linear
+    infinite;
+}
+
+@keyframes dgPageLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+.dg-page-transition--disabled
+  .dg-page-transition__content {
+  opacity: 1;
+
+  transform: none;
+
+  filter: none;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+[data-theme="dark"] .dg-page-transition__ambient,
+.dark .dg-page-transition__ambient {
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(26, 176, 183, 0.1),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 82% 25%,
+      rgba(14, 74, 99, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 55% 90%,
+      rgba(26, 176, 183, 0.08),
+      transparent 28%
+    );
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .dg-page-transition__content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dg-page-transition {
+    --page-transition-duration: 520ms;
+  }
+
+  .dg-page-transition--cinematic.dg-page-transition--entering
+    .dg-page-transition__content {
+    animation-name: dgPageMobileCinematicIn;
+  }
+
+  @keyframes dgPageMobileCinematicIn {
+    from {
+      opacity: 0;
+
+      transform:
+        translate3d(0, 24px, 0)
+        scale(0.965);
+
+      filter: blur(7px);
+    }
+
+    to {
+      opacity: 1;
+
+      transform:
+        translate3d(0, 0, 0)
+        scale(1);
+
+      filter: blur(0);
+    }
+  }
+
+  .dg-page-transition__scanline {
+    display: none;
+  }
+
+  .dg-page-transition--stagger
+    .dg-page-transition__item {
+    animation-duration: 480ms;
+  }
+}
+
+@media (max-width: 480px) {
+  .dg-page-transition {
+    --page-transition-duration: 440ms;
+    --page-stagger-delay: 35ms;
+  }
+
+  .dg-page-transition--stagger
+    .dg-page-transition__item {
+    animation-duration: 400ms;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-page-transition,
+  .dg-page-transition__content,
+  .dg-page-transition__ambient,
+  .dg-page-transition__item {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .dg-page-transition__content {
+    opacity: 1 !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+    clip-path: none !important;
+  }
+
+  .dg-page-transition__ambient {
+    opacity: 0.2;
+  }
+
+  .dg-page-transition__scanline {
+    display: none;
+  }
+
+  .dg-page-transition__loading-ring {
+    animation: none;
+  }
+}

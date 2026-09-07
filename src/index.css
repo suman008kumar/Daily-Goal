@@ -1,0 +1,36 @@
+@import "./styles/variables.css";
+@import "./styles/animations.css";
+@import "./styles/global.css";
+@import "./styles/responsive.css";
+
+:root {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-page);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; background: var(--bg-page); }
+button, input, select, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+img, video, canvas, svg { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--color-accent-soft); color: var(--text-primary); }
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  margin: 0;
+  text-align: left;
+}

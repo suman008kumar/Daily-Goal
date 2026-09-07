@@ -1,0 +1,1174 @@
+/* =========================================================
+   DAILY GOAL — RESPONSIVE SYSTEM
+   Desktop → Tablet → Mobile → Small Mobile
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. LARGE DESKTOP
+   1440px+
+--------------------------------------------------------- */
+
+@media (min-width: 1440px) {
+  .app-content,
+  .page-container,
+  .main-content {
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .analytics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   2. DESKTOP
+   1200px — 1439px
+--------------------------------------------------------- */
+
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  }
+}
+
+
+/* ---------------------------------------------------------
+   3. SIDEBAR DESKTOP
+--------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+  .mobile-navbar {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: none;
+  }
+
+  .sidebar {
+    width: var(--sidebar-width, 260px);
+  }
+
+  .main-content {
+    margin-left: var(--sidebar-width, 260px);
+    width: calc(100% - var(--sidebar-width, 260px));
+  }
+
+  .sidebar.collapsed {
+    width: var(--sidebar-collapsed-width, 82px);
+  }
+
+  .main-content.sidebar-collapsed {
+    margin-left: var(--sidebar-collapsed-width, 82px);
+    width: calc(100% - var(--sidebar-collapsed-width, 82px));
+  }
+}
+
+
+/* ---------------------------------------------------------
+   4. TABLET
+   768px — 1199px
+--------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  :root {
+    --sidebar-width: 82px;
+  }
+
+  .sidebar {
+    width: 82px;
+  }
+
+  .sidebar .sidebar-logo-text,
+  .sidebar .nav-label,
+  .sidebar .user-details,
+  .sidebar .help-text {
+    display: none;
+  }
+
+  .sidebar .nav-item {
+    justify-content: center;
+  }
+
+  .sidebar .sidebar-logo {
+    justify-content: center;
+  }
+
+  .sidebar .sidebar-footer {
+    align-items: center;
+  }
+
+  .main-content {
+    margin-left: 82px;
+    width: calc(100% - 82px);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .three-column-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    min-width: 0;
+  }
+
+  .camera-container {
+    min-height: 420px;
+  }
+
+  .page-header {
+    gap: 16px;
+  }
+
+  .page-title {
+    font-size: 24px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-status-text {
+    display: none;
+  }
+
+  .data-table {
+    min-width: 720px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   5. TABLET — PORTRAIT
+--------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 900px) {
+  .header {
+    padding-inline: 20px;
+  }
+
+  .page-container {
+    padding: 20px;
+  }
+
+  .dashboard-grid {
+    gap: 16px;
+  }
+
+  .stats-grid {
+    gap: 16px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .camera-container {
+    min-height: 360px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   6. MOBILE
+   Below 768px
+--------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  :root {
+    --mobile-header-height: 64px;
+    --mobile-bottom-nav-height: 70px;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* ---------------------------------
+     SIDEBAR
+  --------------------------------- */
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(290px, 84vw);
+    transform: translateX(-105%);
+    z-index: 1000;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.35s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 24px 0 70px rgba(15, 23, 42, 0.18);
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .sidebar-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .sidebar .sidebar-logo-text,
+  .sidebar .nav-label,
+  .sidebar .user-details,
+  .sidebar .help-text {
+    display: block;
+  }
+
+  .sidebar .nav-item {
+    justify-content: flex-start;
+  }
+
+  .sidebar .sidebar-logo {
+    justify-content: flex-start;
+  }
+
+  /* ---------------------------------
+     MAIN CONTENT
+  --------------------------------- */
+
+  .main-content,
+  .main-content.sidebar-collapsed {
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: calc(
+      var(--mobile-bottom-nav-height) + 20px
+    );
+  }
+
+  /* ---------------------------------
+     HEADER
+  --------------------------------- */
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+
+    min-height: var(--mobile-header-height);
+
+    padding: 10px 14px;
+
+    background: var(--color-surface, #ffffff);
+
+    border-bottom: 1px solid
+      var(--color-border, #e5e7eb);
+
+    backdrop-filter: blur(14px);
+  }
+
+  .header-left {
+    min-width: 0;
+  }
+
+  .header-title {
+    max-width: 190px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .header-action-label {
+    display: none;
+  }
+
+  .header-status {
+    padding: 7px 9px;
+  }
+
+  .header-status-text {
+    display: none;
+  }
+
+  .theme-toggle,
+  .notification-button,
+  .profile-button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: var(--color-surface-soft, #f3f7f9);
+    color: var(--color-text, #0f172a);
+
+    cursor: pointer;
+  }
+
+  /* ---------------------------------
+     PAGE
+  --------------------------------- */
+
+  .page-container {
+    width: 100%;
+    padding: 18px 14px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-bottom: 18px;
+  }
+
+  .page-title {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .page-subtitle {
+    font-size: 13px;
+  }
+
+  .page-header-actions {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* ---------------------------------
+     GRIDS
+  --------------------------------- */
+
+  .dashboard-grid,
+  .stats-grid,
+  .three-column-grid,
+  .two-column-grid,
+  .analytics-grid,
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid,
+  .stats-grid {
+    gap: 12px;
+  }
+
+  /* ---------------------------------
+     CARDS
+  --------------------------------- */
+
+  .card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .card-header {
+    gap: 10px;
+  }
+
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+  }
+
+  /* ---------------------------------
+     STAT CARDS
+  --------------------------------- */
+
+  .stat-card {
+    min-height: 112px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+  }
+
+  /* ---------------------------------
+     DAILY GOAL
+  --------------------------------- */
+
+  .daily-goal-card {
+    min-height: 250px;
+  }
+
+  .daily-goal-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .daily-goal-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .daily-goal-actions .btn {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     FOCUS SCORE
+  --------------------------------- */
+
+  .focus-score-card {
+    min-height: 250px;
+  }
+
+  .focus-score-value {
+    font-size: 46px;
+  }
+
+  /* ---------------------------------
+     SESSION TIMER
+  --------------------------------- */
+
+  .session-timer {
+    min-height: 250px;
+  }
+
+  .session-timer-value {
+    font-size: clamp(42px, 14vw, 68px);
+  }
+
+  .timer-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .timer-controls .btn {
+    min-width: 110px;
+  }
+
+  /* ---------------------------------
+     CAMERA
+  --------------------------------- */
+
+  .camera-card {
+    width: 100%;
+  }
+
+  .camera-container {
+    width: 100%;
+    min-height: 250px;
+    aspect-ratio: 16 / 10;
+  }
+
+  .camera-overlay {
+    padding: 10px;
+  }
+
+  .camera-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .camera-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .camera-controls .btn {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     AI STATUS
+  --------------------------------- */
+
+  .ai-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .ai-status-card {
+    padding: 12px;
+  }
+
+  .ai-status-confidence {
+    font-size: 11px;
+  }
+
+  /* ---------------------------------
+     CHARTS
+  --------------------------------- */
+
+  .chart-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .chart {
+    min-width: 520px;
+  }
+
+  .focus-chart {
+    min-height: 250px;
+  }
+
+  /* ---------------------------------
+     ACTIVITY BREAKDOWN
+  --------------------------------- */
+
+  .activity-breakdown {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-donut {
+    margin-inline: auto;
+  }
+
+  /* ---------------------------------
+     ALERTS
+  --------------------------------- */
+
+  .alert-popup {
+    width: calc(100vw - 24px);
+    max-width: none;
+
+    left: 12px;
+    right: 12px;
+    bottom: 84px;
+  }
+
+  .alert-toast-container {
+    width: calc(100vw - 24px);
+    right: 12px;
+    left: 12px;
+  }
+
+  .alert-toast {
+    width: 100%;
+  }
+
+  .alert-actions {
+    flex-direction: column;
+  }
+
+  .alert-actions .btn {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     TABLES
+  --------------------------------- */
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    border-radius: 14px;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table {
+    min-width: 680px;
+  }
+
+  /* ---------------------------------
+     MOBILE SESSION LIST
+  --------------------------------- */
+
+  .session-table {
+    display: none;
+  }
+
+  .session-cards {
+    display: grid;
+    gap: 10px;
+  }
+
+  .session-card {
+    display: block;
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+  }
+
+  /* ---------------------------------
+     BUTTONS
+  --------------------------------- */
+
+  .btn {
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+
+  .btn-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .btn-group .btn {
+    flex: 1 1 auto;
+  }
+
+  /* ---------------------------------
+     FORMS
+  --------------------------------- */
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-control,
+  .select-control,
+  .input {
+    min-height: 46px;
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     SETTINGS
+  --------------------------------- */
+
+  .settings-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .settings-nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+
+    padding-bottom: 4px;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .settings-nav-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .setting-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .setting-control {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     SMART REPORT
+  --------------------------------- */
+
+  .report-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .report-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .report-actions {
+    width: 100%;
+  }
+
+  .report-actions .btn {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     LIVE USERS
+  --------------------------------- */
+
+  .live-users-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .country-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---------------------------------
+     MODALS
+  --------------------------------- */
+
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal {
+    width: 100%;
+    max-width: none;
+    max-height: calc(100vh - 24px);
+
+    border-radius: 20px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  /* ---------------------------------
+     TOOLTIP
+  --------------------------------- */
+
+  .tooltip {
+    display: none;
+  }
+
+  /* ---------------------------------
+     BOTTOM NAVIGATION
+  --------------------------------- */
+
+  .mobile-navbar {
+    position: fixed;
+
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+
+    height: var(--mobile-bottom-nav-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 8px;
+
+    background: var(--color-surface, #ffffff);
+
+    border: 1px solid
+      var(--color-border, #e5e7eb);
+
+    border-radius: 20px;
+
+    box-shadow:
+      0 12px 35px rgba(15, 23, 42, 0.12);
+
+    z-index: 900;
+
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-navbar-item {
+    min-width: 44px;
+    min-height: 44px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    border-radius: 12px;
+
+    color: var(--color-text-muted);
+    text-decoration: none;
+
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .mobile-navbar-item.active {
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+  }
+
+  .mobile-navbar-item:active {
+    transform: scale(0.94);
+  }
+
+  .mobile-navbar-label {
+    font-size: 9px;
+    font-weight: 600;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   7. SMALL MOBILE
+   Below 480px
+--------------------------------------------------------- */
+
+@media (max-width: 479px) {
+  .page-container {
+    padding: 14px 10px;
+  }
+
+  .header {
+    padding-inline: 10px;
+  }
+
+  .header-title {
+    font-size: 15px;
+    max-width: 140px;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+
+  .theme-toggle,
+  .notification-button,
+  .profile-button,
+  .mobile-menu-button {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .stats-grid {
+    gap: 8px;
+  }
+
+  .stat-card {
+    min-height: 100px;
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 21px;
+  }
+
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .daily-goal-card {
+    min-height: 230px;
+  }
+
+  .focus-score-value {
+    font-size: 42px;
+  }
+
+  .session-timer-value {
+    font-size: 42px;
+  }
+
+  .ai-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .camera-container {
+    min-height: 220px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .camera-status-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .camera-control {
+    min-height: 44px;
+  }
+
+  .report-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-navbar {
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+
+    height: 64px;
+    border-radius: 18px;
+  }
+
+  .mobile-navbar-label {
+    font-size: 8px;
+  }
+
+  .mobile-navbar-item {
+    min-width: 40px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   8. VERY SMALL DEVICES
+   Below 360px
+--------------------------------------------------------- */
+
+@media (max-width: 359px) {
+  .page-container {
+    padding-inline: 8px;
+  }
+
+  .header {
+    padding-inline: 8px;
+  }
+
+  .header-title {
+    max-width: 110px;
+    font-size: 14px;
+  }
+
+  .theme-toggle,
+  .notification-button,
+  .profile-button,
+  .mobile-menu-button {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 19px;
+  }
+
+  .session-timer-value {
+    font-size: 36px;
+  }
+
+  .camera-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-navbar {
+    gap: 2px;
+  }
+
+  .mobile-navbar-item {
+    min-width: 36px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   9. LANDSCAPE MOBILE
+--------------------------------------------------------- */
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .camera-container {
+    min-height: 300px;
+    max-height: 65vh;
+  }
+
+  .mobile-navbar {
+    height: 58px;
+  }
+
+  .main-content {
+    padding-bottom: 78px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   10. TOUCH DEVICES
+--------------------------------------------------------- */
+
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  button,
+  a,
+  .nav-item,
+  .mobile-navbar-item,
+  .clickable {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+
+  .nav-item:hover {
+    background: transparent;
+  }
+
+  /* Better touch scrolling */
+  .table-wrapper,
+  .chart-wrapper,
+  .settings-nav {
+    scrollbar-width: none;
+  }
+
+  .table-wrapper::-webkit-scrollbar,
+  .chart-wrapper::-webkit-scrollbar,
+  .settings-nav::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   11. REDUCED MOTION
+--------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .page-transition,
+  .splash-screen,
+  .dashboard-card,
+  .alert-toast,
+  .camera-pulse {
+    animation: none !important;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   12. PRINT
+--------------------------------------------------------- */
+
+@media print {
+  .sidebar,
+  .header,
+  .mobile-navbar,
+  .mobile-menu-button,
+  .header-actions,
+  .page-header-actions,
+  .btn,
+  .camera-controls {
+    display: none !important;
+  }
+
+  .main-content,
+  .main-content.sidebar-collapsed {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page-container {
+    padding: 0;
+    max-width: none;
+  }
+
+  .card {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  body {
+    background: #ffffff;
+  }
+}
